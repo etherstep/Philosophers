@@ -99,7 +99,7 @@ void	*routine(void *param)
 	if (philo->table->number_of_philos == 1)
 		return (single_philo(philo));
 	if (philo->number % 2 != 0)
-		usleep(philo->time_to_eat * 500);
+		ft_usleep(philo->time_to_eat * 500, philo->table);
 	while (1)
 	{
 		if (!thinking(philo))

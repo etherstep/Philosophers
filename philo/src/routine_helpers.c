@@ -85,5 +85,5 @@ int	unlock_mutexes(t_philo *philo)
 		else
 			pthread_mutex_unlock(&philo->table->philos[philo->index].fork);
 	}
-	return (0);
+	return (philo_died(philo->table));
 }

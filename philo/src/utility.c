@@ -52,8 +52,8 @@ int	get_time(t_table *table)
 	long		ms;
 
 	gettimeofday(&now, NULL);
-	us = ((long long)now.tv_sec * 1000000 + now.tv_usec)
-		- ((long long)table->start.tv_sec * 1000000 + table->start.tv_usec);
+	us = ((long long)now.tv_sec * 1000000 + now.tv_usec);
+	us = us - ((long long)table->start.tv_sec * 1000000 + table->start.tv_usec);
 	ms = us / 1000;
 	return ((int)ms);
 }
@@ -66,8 +66,7 @@ static void	sync_to_start_time(t_philo *philo)
 	{
 		gettimeofday(&now, NULL);
 		if (now.tv_sec > philo->table->start.tv_sec
-			|| (now.tv_sec == philo->table->start.tv_sec
-				&& now.tv_usec >= philo->table->start.tv_usec))
+			|| (now.tv_sec == philo->table->start.tv_sec && now.tv_usec >= philo->table->start.tv_usec))
 			break ;
 		usleep(100);
 	}
